@@ -29,7 +29,12 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
       
-      - name: Build AAB
+      - name: Verify Expo Login
+        run: eas whoami
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      
+      - name: Build AAB
         run: eas build --platform android --profile ${{ github.event.inputs.build_type }} --non-interactive --wait
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
