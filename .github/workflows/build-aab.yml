@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       build_type:
-        description: 'Build type'
+        description: Build type
         required: true
-        default: 'production'
+        default: production
         type: choice
         options:
           - production
@@ -31,5 +31,4 @@ jobs:
       - name: Build AAB
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: |
-          eas build --platform android --profile production --wait
+        run: eas build --platform android --profile production --wait
